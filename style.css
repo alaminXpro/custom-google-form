@@ -1,0 +1,269 @@
+/* Custom Styles for Multi-Step Form */
+
+/* Screen Reader Only */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+}
+
+/* Form Step Animations */
+.form-step {
+    display: none;
+    animation: fadeSlideIn 0.4s ease-out;
+}
+
+.form-step--active {
+    display: block;
+}
+
+@keyframes fadeSlideIn {
+    from {
+        opacity: 0;
+        transform: translateX(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Progress Bar Animation */
+.progress__bar {
+    transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Error Text Styling */
+.error-text:empty {
+    display: none;
+}
+
+.error-text:not(:empty) {
+    display: block;
+    animation: shake 0.3s;
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    75% { transform: translateX(5px); }
+}
+
+/* Input Error State */
+input.error,
+textarea.error,
+select.error {
+    border-color: #ef4444;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+}
+
+/* Helper Text */
+.helper-text {
+    font-size: 0.875rem;
+    color: #6b7280;
+}
+
+/* Form Field Spacing */
+.form-field {
+    margin-bottom: 1.5rem;
+}
+
+/* Radio and Checkbox Custom Styling */
+input[type="radio"],
+input[type="checkbox"] {
+    width: 1.25rem;
+    height: 1.25rem;
+    cursor: pointer;
+    accent-color: #2563eb;
+}
+
+input[type="radio"]:focus,
+input[type="checkbox"]:focus {
+    outline: 2px solid #3b82f6;
+    outline-offset: 2px;
+}
+
+/* Radio and Checkbox Error State */
+input[type="radio"].error,
+input[type="checkbox"].error {
+    outline: 2px solid #ef4444;
+    outline-offset: 2px;
+}
+
+/* Label styling when radio/checkbox has error */
+input[type="radio"].error + span,
+input[type="checkbox"].error + span {
+    color: #dc2626;
+}
+
+/* Button Hover States */
+button {
+    transition: all 0.2s ease;
+}
+
+button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+/* Sticky Bottom Actions on Mobile */
+@media (max-width: 640px) {
+    .form-actions {
+        position: sticky;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: white;
+        padding: 1rem;
+        margin: 0 -1.5rem -1.5rem;
+        box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+        z-index: 10;
+    }
+}
+
+/* Success Message Animation */
+#success-message:not(.hidden) {
+    animation: fadeIn 0.5s ease-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Spinner Animation */
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.animate-spin {
+    animation: spin 1s linear infinite;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f5f9;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #94a3b8;
+}
+
+/* Focus Visible for Keyboard Navigation */
+*:focus-visible {
+    outline: 2px solid #3b82f6;
+    outline-offset: 2px;
+}
+
+/* Chip/Tag Styling (for future use) */
+.chip {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.25rem 0.75rem;
+    background: #e0f2fe;
+    color: #0369a1;
+    border-radius: 9999px;
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+/* Loading State */
+.loading {
+    position: relative;
+    pointer-events: none;
+}
+
+.loading::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 0.5rem;
+}
+
+/* Toast Notification (for errors) */
+.toast {
+    position: fixed;
+    top: 5rem;
+    right: 1rem;
+    background: #ef4444;
+    color: white;
+    padding: 1rem 1.5rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    animation: slideInRight 0.3s ease-out;
+    z-index: 1000;
+}
+
+@keyframes slideInRight {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+/* Responsive Typography */
+@media (max-width: 640px) {
+    h2 {
+        font-size: 1.5rem;
+    }
+    
+    .form-wrap {
+        padding: 1.5rem;
+    }
+}
+
+/* Accessibility: High Contrast Mode Support */
+@media (prefers-contrast: high) {
+    input,
+    textarea,
+    select {
+        border-width: 2px;
+    }
+    
+    button {
+        border: 2px solid currentColor;
+    }
+}
+
+/* Accessibility: Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}

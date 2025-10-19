@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Book a Demo - Multi-Step Form</title>
+
+    <!-- Tailwind CSS CDN v4 -->
+    <script src="https://cdn.tailwindcss.com?v=4.0.0"></script>
+
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body class="bg-gray-50 min-h-screen">
+    <!-- Sticky Navbar -->
+    <nav class="navbar fixed top-0 left-0 right-0 bg-white shadow-sm z-50 h-16">
+      <div
+        class="max-w-7xl mx-auto px-4 h-full flex items-center justify-between"
+      >
+        <a href="/" class="flex items-center"> Alaminia.com </a>
+        <div
+          class="step-counter text-sm font-medium text-gray-600"
+          aria-live="polite"
+        >
+          Step <span id="current-step">1</span> of 4
+        </div>
+      </div>
+    </nav>
+
+    <!-- Progress Bar -->
+    <div class="progress fixed top-16 left-0 right-0 bg-gray-200 h-1 z-40">
+      <div
+        class="progress__bar bg-purple-600 h-full transition-all duration-500 ease-out"
+        style="width: 0%"
+      ></div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="pt-24 pb-12 px-4">
+      <div
+        class="form-wrap max-w-3xl mx-auto bg-white rounded-lg shadow-lg p-6 sm:p-8"
+      >
+        <!-- Form -->
+        <form id="multi-step-form" class="space-y-6">
+          <!-- Google Form entry hidden fields (copied IDs from original form) -->
+          <input type="hidden" id="entry_103247370" name="entry.103247370" />
+          <input type="hidden" id="entry_117546879" name="entry.117546879" />
+          <input type="hidden" id="entry_397747529" name="entry.397747529" />
+          <input type="hidden" id="entry_631000131" name="entry.631000131" />
+          <input type="hidden" id="entry_692704042" name="entry.692704042" />
+          <input type="hidden" id="entry_823750113" name="entry.823750113" />
+          <input type="hidden" id="entry_1172185507" name="entry.1172185507" />
+          <input type="hidden" id="entry_1219352153" name="entry.1219352153" />
+          <input type="hidden" id="entry_1258084637" name="entry.1258084637" />
+          <input type="hidden" id="entry_1354342209" name="entry.1354342209" />
+          <input type="hidden" id="entry_1495825747" name="entry.1495825747" />
+          <input type="hidden" id="entry_1783536233" name="entry.1783536233" />
+          <input type="hidden" id="entry_1981656635" name="entry.1981656635" />
+          <input type="hidden" id="entry_1146736747" name="entry.1146736747" />
+
+          <!-- Honeypot (hidden spam trap) -->
+          <input
+            type="text"
+            id="website_url"
+            name="website_url"
+            class="hidden"
+            tabindex="-1"
+            autocomplete="off"
+          />
+
+          <!-- Step 1: Contact -->
+          <div class="form-step form-step--active" data-step="1">
+            <h2 class="text-2xl font-bold text-gray-900 mb-6">
+              Contact Information
+            </h2>
+
+            <div class="form-field">
+              <label
+                for="name"
+                class="block text-sm font-medium text-gray-700 mb-2"
+              >
+                Your Name (আপনার নাম)
+                <span class="text-red-500">*</span>
+              </label>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                required
+                minlength="2"
+                maxlength="60"
+                pattern="^[a-zA-Z\s]+$"
+                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                placeholder="John Doe"
+                aria-describedby="name-error"
+              />
+              <p
+                id="name-error"
+                class="error-text mt-1 text-sm text-red-600"
+                role="alert"
+              ></p>
+            </div>
+
+            <div class="form-field">
+              <label
+                for="business_name"
+                class="block text-sm font-medium text-gray-700 mb-2"
+              >
+                Business Name (আপনার ব্যবসার নাম)
+                <span class="text-red-500">*</span>
+              </label>
+              <input
+                type="text"
+                id="business_name"
+                name="business_name"
+                required
+                minlength="2"
+                maxlength="80"
+                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                placeholder="Acme Corporation"
+                aria-describedby="business_name-error"
+              />
+              <p
+                id="business_name-error"
+                class="error-text mt-1 text-sm text-red-600"
+                role="alert"
+              ></p>
+            </div>
+
+            <div class="form-field">
+              <label
+                for="business_email"
+                class="block text-sm font-medium text-gray-700 mb-2"
+              >
+                Business Email (আপনার ব্যবসার ইমেইল)
+                <span class="text-red-500">*</span>
+              </label>
+              <input
+                type="email"
+                id="business_email"
+                name="business_email"
+                required
+                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                placeholder="contact@business.com"
+                aria-describedby="business_email-error"
+              />
+              <p
+                id="business_email-error"
+                class="error-text mt-1 text-sm text-red-600"
+                role="alert"
+              ></p>
+            </div>
+          </div>
+
+          <!-- Step 2: Social & Web -->
+          <div class="form-step" data-step="2">
+            <h2 class="text-2xl font-bold text-gray-900 mb-6">
+              Social & Web Presence
+            </h2>
+
+            <div class="form-field">
+              <label
+                for="website"
+                class="block text-sm font-medium text-gray-700 mb-2"
+              >
+                Business Website (if you have one, not social media)
+                <span class="text-red-500">*</span>
+                <br />
+                আপনার ব্যবসার ওয়েবসাইট (যদি থাকে, সামাজিক মিডিয়া নয়)
+              </label>
+              <input
+                type="url"
+                id="website"
+                name="website"
+                required
+                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                placeholder="https://yourbusiness.com"
+                aria-describedby="website-error"
+              />
+              <p
+                id="website-error"
+                class="error-text mt-1 text-sm text-red-600"
+                role="alert"
+              ></p>
+            </div>
+
+            <div class="form-field">
+              <label
+                for="facebook"
+                class="block text-sm font-medium text-gray-700 mb-2"
+              >
+                Business FB page link (if any) <br />
+                ব্যবসার ফেসবুক পেজ লিংক (যদি থাকে)
+              </label>
+              <input
+                type="url"
+                id="facebook"
+                name="facebook"
+                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                placeholder="https://facebook.com/yourpage"
+                aria-describedby="facebook-error"
+              />
+              <p
+                id="facebook-error"
+                class="error-text mt-1 text-sm text-red-600"
+                role="alert"
+              ></p>
+            </div>
+
+            <div class="form-field">
+              <label
+                for="instagram"
+                class="block text-sm font-medium text-gray-700 mb-2"
+              >
+                Business Instagram page link (if any) <br />
+                ব্যবসার ইনস্টাগ্রাম পেজ লিংক (যদি থাকে)
+              </label>
+              <input
+                type="url"
+                id="instagram"
+                name="instagram"
+                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                placeholder="https://instagram.com/yourpage"
+                aria-describedby="instagram-error"
+              />
+              <p
+                id="instagram-error"
+                class="error-text mt-1 text-sm text-red-600"
+                role="alert"
+              ></p>
+            </div>
+
+            <div class="form-field">
+              <label
+                for="other_platforms"
+                class="block text-sm font-medium text-gray-700 mb-2"
+              >
+                Other platforms (e.g., WhatsApp Business link, Telegram channel)
+                <br />
+                অন্যান্য প্ল্যাটফর্ম (যেমন: হোয়াটসঅ্যাপ বিজনেস লিঙ্ক, টেলিগ্রাম
+                চ্যানেল)
+              </label>
+              <textarea
+                id="other_platforms"
+                name="other_platforms"
+                rows="3"
+                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                placeholder="e.g., WhatsApp Business: wa.me/8801..., Telegram: t.me/..."
+              ></textarea>
+            </div>
+          </div>
+
+          <!-- Step 3: Business Profile -->
+          <div class="form-step" data-step="3">
+            <h2 class="text-2xl font-bold text-gray-900 mb-6">
+              Business Profile
+            </h2>
+
+            <div class="form-field">
+              <label
+                for="business_details"
+                class="block text-sm font-medium text-gray-700 mb-2"
+              >
+                Business Details (আপনার ব্যবসার সংক্ষিপ্ত বিবরণ)
+              </label>
+              <textarea
+                id="business_details"
+                name="business_details"
+                rows="5"
+                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                placeholder="Tell us about your business (optional, 10-300 words if provided)"
+                aria-describedby="business_details-error business_details-count"
+              ></textarea>
+              <div class="flex justify-between items-center mt-1">
+                <p
+                  id="business_details-error"
+                  class="error-text text-sm text-red-600"
+                  role="alert"
+                ></p>
+                <p
+                  id="business_details-count"
+                  class="helper-text text-sm text-gray-500"
+                >
+                  0 words (optional)
+                </p>
+              </div>
+            </div>
+
+            <div class="form-field">
+              <label class="block text-sm font-medium text-gray-700 mb-3">
+                What kind of business are you primarily running?
+                <span class="text-red-500">*</span>
+                <br />
+                (আপনার ব্যবসা প্রধানত কী ধরনের?)
+              </label>
+              <div class="space-y-2">
+                <label class="flex items-center">
+                  <input
+                    type="radio"
+                    name="business_type"
+                    value="Product (পণ্য)"
+                    required
+                    class="mr-2"
+                  />
+                  <span>Product (পণ্য)</span>
+                </label>
+                <label class="flex items-center">
+                  <input
+                    type="radio"
+                    name="business_type"
+                    value="Service (সেবা)"
+                    required
+                    class="mr-2"
+                  />
+                  <span>Service (সেবা)</span>
+                </label>
+                <label class="flex items-center">
+                  <input
+                    type="radio"
+                    name="business_type"
+                    value="Mix of both (উভয়ের মিশ্রণ)"
+                    required
+                    class="mr-2"
+                  />
+                  <span>Both (উভয়ের মিশ্রণ)</span>
+                </label>
+              </div>
+              <p
+                id="business_type-error"
+                class="error-text mt-1 text-sm text-red-600"
+                role="alert"
+              ></p>
+            </div>
+
+            <div class="form-field">
+              <label
+                for="core_category"
+                class="block text-sm font-medium text-gray-700 mb-2"
+              >
+                Which category best describes your core product?
+                <span class="text-red-500">*</span>
+                <br />
+                (আপনার প্রধান পণ্যটি কোন ক্যাটাগরির মধ্যে পড়ে?)
+              </label>
+              <select
+                id="core_category"
+                name="core_category"
+                required
+                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                aria-describedby="core_category-error"
+              >
+                <option value="">Select a category</option>
+                <option value="Electronics/Gadgets (ইলেকট্রনিক্স/গ্যাজেট)">
+                  Electronics/Gadgets (ইলেকট্রনিক্স/গ্যাজেট)
+                </option>
+                <option value="Fashion/Apparel/Clothing (ফ্যাশন/পোশাক/কাপড়)">
+                  Fashion/Apparel/Clothing (ফ্যাশন/পোশাক/কাপড়)
+                </option>
+                <option
+                  value="Health & Beauty/Cosmetics (স্বাস্থ্য ও সৌন্দর্য/প্রসাধনী)"
+                >
+                  Health & Beauty/Cosmetics (স্বাস্থ্য ও সৌন্দর্য/প্রসাধনী)
+                </option>
+                <option
+                  value="Food & Beverage (Packaged Goods) (খাবার ও পানীয় (প্যাকেজ করা পণ্য))"
+                >
+                  Food & Beverage (Packaged) (খাবার ও পানীয় (প্যাকেজ করা পণ্য))
+                </option>
+                <option
+                  value="Home Goods/Furniture/Decor (গৃহস্থালী পণ্য/আসবাবপত্র/সজ্জা)"
+                >
+                  Home Goods/Furniture/Decor (গৃহস্থালী পণ্য/আসবাবপত্র/সজ্জা)
+                </option>
+                <option
+                  value="Accessories (Jewelry, Watches, Bags) (অ্যাক্সেসরিজ (গহনা, ঘড়ি, ব্যাগ))"
+                >
+                  Accessories (Jewelry, Watches, Bags) (অ্যাক্সেসরিজ (গহনা,
+                  ঘড়ি, ব্যাগ))
+                </option>
+                <option
+                  value="Sports & Outdoors Equipment (ক্রীড়া ও বাইরের সরঞ্জাম)"
+                >
+                  Sports & Outdoors Equipment (ক্রীড়া ও বাইরের সরঞ্জাম)
+                </option>
+                <option
+                  value="Digital Products (E-books, Courses) (ডিজিটাল পণ্য (ই-বুক, কোর্স))"
+                >
+                  Digital Products (E-books, Courses) (ডিজিটাল পণ্য (ই-বুক,
+                  কোর্স))
+                </option>
+                <option
+                  value="Specialty/Craft Goods (Handmade) (বিশেষ/কারুশিল্প পণ্য (হস্তনির্মিত))"
+                >
+                  Specialty/Craft (Handmade) (বিশেষ/কারুশিল্প পণ্য
+                  (হস্তনির্মিত))
+                </option>
+                <option
+                  value="Tools & Industrial Supplies (সরঞ্জাম ও শিল্প সরবরাহ)"
+                >
+                  Tools & Industrial Supplies (সরঞ্জাম ও শিল্প সরবরাহ)
+                </option>
+              </select>
+              <p
+                id="core_category-error"
+                class="error-text mt-1 text-sm text-red-600"
+                role="alert"
+              ></p>
+            </div>
+          </div>
+
+          <!-- Step 4: Operations & Intent -->
+          <div class="form-step" data-step="4">
+            <h2 class="text-2xl font-bold text-gray-900 mb-6">
+              Operations & Intent
+            </h2>
+
+            <div class="form-field">
+              <label class="block text-sm font-medium text-gray-700 mb-3">
+                Which channels do you use to take customer orders? (Check all
+                that apply)
+
+                <span class="text-red-500">* (select at least one)</span>
+                <br />
+                গ্রাহকদের কাছ থেকে অর্ডার নেওয়ার জন্য আপনি কোন চ্যানেলগুলি
+                ব্যবহার করেন? (একাধিক উত্তর দিতে পারেন)
+              </label>
+              <div class="space-y-2">
+                <label class="flex items-center">
+                  <input
+                    type="checkbox"
+                    name="sales_channels"
+                    value="Meta (FB, IG, WhatsApp): মেটা (ফেসবুক, ইনস্টাগ্রাম, হোয়াটসঅ্যাপ)"
+                    class="mr-2"
+                  />
+                  <span
+                    >Meta (FB, IG, WhatsApp): মেটা (ফেসবুক, ইনস্টাগ্রাম,
+                    হোয়াটসঅ্যাপ)</span
+                  >
+                </label>
+                <label class="flex items-center">
+                  <input
+                    type="checkbox"
+                    name="sales_channels"
+                    value="Website: ওয়েবসাইট"
+                    class="mr-2"
+                  />
+                  <span>Website: ওয়েবসাইট</span>
+                </label>
+                <label class="flex items-center">
+                  <input
+                    type="checkbox"
+                    name="sales_channels"
+                    value="Tiktok: টিকটক"
+                    class="mr-2"
+                  />
+                  <span>TikTok: টিকটক</span>
+                </label>
+                <label class="flex items-center">
+                  <input
+                    type="checkbox"
+                    name="sales_channels"
+                    value="Telegram: টেলিগ্রাম"
+                    class="mr-2"
+                  />
+                  <span>Telegram: টেলিগ্রাম</span>
+                </label>
+                <label class="flex items-center">
+                  <input
+                    type="checkbox"
+                    name="sales_channels"
+                    value="Outlets (Physical Stores): আউটলেট (শারীরিক দোকান)"
+                    class="mr-2"
+                  />
+                  <span>Outlets (Physical Stores): আউটলেট (শারীরিক দোকান)</span>
+                </label>
+                <label class="flex items-center">
+                  <input
+                    type="checkbox"
+                    id="sales_channels_others"
+                    name="sales_channels"
+                    value="Others: অন্যান্য"
+                    class="mr-2"
+                  />
+                  <span>Others: অন্যান্য</span>
+                </label>
+              </div>
+              <!-- Note: Removed free-text 'Others' input to treat 'Others' as a standalone checkbox option -->
+              <p
+                id="sales_channels-error"
+                class="error-text mt-1 text-sm text-red-600"
+                role="alert"
+              ></p>
+            </div>
+
+            <div class="form-field">
+              <label
+                for="avg_daily_orders"
+                class="block text-sm font-medium text-gray-700 mb-2"
+              >
+                On average, how many orders do you process daily?
+                <span class="text-red-500">*</span>
+                <br />
+                গড়ে প্রতিদিন আপনি কয়টি অর্ডার প্রক্রিয়া করেন?
+              </label>
+              <input
+                type="number"
+                id="avg_daily_orders"
+                name="avg_daily_orders"
+                required
+                min="0"
+                max="10000"
+                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                placeholder="e.g., 20-300"
+                aria-describedby="avg_daily_orders-error avg_daily_orders-helper"
+              />
+              <p
+                id="avg_daily_orders-helper"
+                class="helper-text mt-1 text-sm text-gray-500"
+              >
+                e.g., 20–300
+              </p>
+              <p
+                id="avg_daily_orders-error"
+                class="error-text mt-1 text-sm text-red-600"
+                role="alert"
+              ></p>
+            </div>
+
+            <div class="form-field">
+              <label
+                for="avg_ticket_size"
+                class="block text-sm font-medium text-gray-700 mb-2"
+              >
+                What is your average ticket size (per-order value)?
+                <span class="text-red-500">*</span>
+                <br />
+                আপনার গড় টিকিট সাইজ (প্রতি অর্ডারে মূল্য) কত?
+              </label>
+              <input
+                type="text"
+                id="avg_ticket_size"
+                name="avg_ticket_size"
+                required
+                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                placeholder="e.g., 1,500 BDT"
+                aria-describedby="avg_ticket_size-error avg_ticket_size-helper"
+              />
+              <p
+                id="avg_ticket_size-helper"
+                class="helper-text mt-1 text-sm text-gray-500"
+              >
+                Enter amount with currency (e.g., 1,500 BDT)
+              </p>
+              <p
+                id="avg_ticket_size-error"
+                class="error-text mt-1 text-sm text-red-600"
+                role="alert"
+              ></p>
+            </div>
+
+            <div class="form-field">
+              <label class="block text-sm font-medium text-gray-700 mb-3">
+                How soon are you planning to integrate AI automation into your
+                order process?
+                <span class="text-red-500">*</span>
+                <br />
+                আপনি কত দ্রুত আপনার অর্ডার প্রক্রিয়াতে AI অটোমেশন যুক্ত করার
+                পরিকল্পনা করছেন?
+              </label>
+              <div class="space-y-2">
+                <label class="flex items-center">
+                  <input
+                    type="radio"
+                    name="ai_timeline"
+                    value="Immediate (তাৎক্ষণিক)"
+                    required
+                    class="mr-2"
+                  />
+                  <span>Immediate (তাৎক্ষণিক)</span>
+                </label>
+                <label class="flex items-center">
+                  <input
+                    type="radio"
+                    name="ai_timeline"
+                    value="Within 2 weeks (২ সপ্তাহের মধ্যে)"
+                    required
+                    class="mr-2"
+                  />
+                  <span>Within 2 weeks (২ সপ্তাহের মধ্যে)</span>
+                </label>
+                <label class="flex items-center">
+                  <input
+                    type="radio"
+                    name="ai_timeline"
+                    value="Within 1 month (১ মাসের মধ্যে)"
+                    required
+                    class="mr-2"
+                  />
+                  <span>Within 1 month (১ মাসের মধ্যে)</span>
+                </label>
+                <label class="flex items-center">
+                  <input
+                    type="radio"
+                    name="ai_timeline"
+                    value="Not sure / Later (নিশ্চিত নই / পরে)"
+                    required
+                    class="mr-2"
+                  />
+                  <span>Not sure / Later (নিশ্চিত নই / পরে)</span>
+                </label>
+              </div>
+              <p
+                id="ai_timeline-error"
+                class="error-text mt-1 text-sm text-red-600"
+                role="alert"
+              ></p>
+            </div>
+          </div>
+
+          <!-- Form Actions -->
+          <div
+            class="form-actions flex items-center justify-between pt-6 border-t border-gray-200"
+          >
+            <button
+              type="button"
+              id="back-btn"
+              class="text-gray-600 hover:text-gray-900 font-medium hidden"
+              aria-label="Go back to previous step"
+            >
+              ← Back
+            </button>
+            <div class="ml-auto flex gap-3">
+              <button
+                type="button"
+                id="next-btn"
+                class="px-6 py-2 bg-purple-700 text-white rounded-lg hover:bg-purple-600 transition-colors font-medium"
+                aria-label="Go to next step"
+              >
+                Next →
+              </button>
+              <button
+                type="submit"
+                id="submit-btn"
+                class="hidden px-6 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors font-medium"
+                aria-label="Submit form"
+              >
+                <span id="submit-btn-text">Submit</span>
+                <span id="submit-btn-spinner" class="hidden">
+                  <svg
+                    class="animate-spin h-5 w-5 inline-block"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                  >
+                    <circle
+                      class="opacity-25"
+                      cx="12"
+                      cy="12"
+                      r="10"
+                      stroke="currentColor"
+                      stroke-width="4"
+                    ></circle>
+                    <path
+                      class="opacity-75"
+                      fill="currentColor"
+                      d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                    ></path>
+                  </svg>
+                  Submitting...
+                </span>
+              </button>
+            </div>
+          </div>
+        </form>
+
+        <!-- Success Message (hidden by default) -->
+        <div id="success-message" class="hidden text-center py-12">
+          <svg
+            class="w-16 h-16 text-green-500 mx-auto mb-4"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+            ></path>
+          </svg>
+          <h3 class="text-2xl font-bold text-gray-900 mb-2">Thank You!</h3>
+          <p class="text-gray-600 mb-6">We'll reach out within 24 hours.</p>
+          <div class="flex flex-col sm:flex-row gap-3 justify-center">
+            <a
+              href="/"
+              id="home-link"
+              class="inline-flex items-center justify-center px-6 py-3 bg-gray-600 text-white rounded-lg hover:bg-gray-700 transition-colors font-medium"
+            >
+              🏠 Back to Home
+            </a>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Screen Reader Announcements -->
+    <div
+      id="sr-announcements"
+      class="sr-only"
+      aria-live="polite"
+      aria-atomic="true"
+    ></div>
+
+    <!-- Custom Script -->
+    <script src="script.js"></script>
+  </body>
+</html>
