@@ -25,7 +25,7 @@ This README explains how to configure the Google Forms integration, run the site
 1. Clone the repository:
 
 ```bash
-git clone <your-repo-url>
+git clone https://github.com/alaminXpro/custom-google-form.git
 cd "Custom-Google Form"
 ```
 
